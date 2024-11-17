@@ -6,6 +6,7 @@ from chatbot import process_uploaded_file
 from main_chatbot import setup_vectorstore, chat_chain
 from langchain_community.vectorstores import Chroma
 from fastapi.middleware.cors import CORSMiddleware
+from translate import translate_response
 
 app = FastAPI()
 
@@ -21,6 +22,7 @@ PERSIST_DIRECTORY = './vector_db'
 
 class QuestionRequest(BaseModel):
     question: str
+    language: str
 
 @app.post("/upload/")
 async def upload_file(file: UploadFile = File(...)):
@@ -44,6 +46,8 @@ async def ask_question(req: QuestionRequest):
     
     # get response from chatbot
     response = chain.invoke({"input": req.question})
-    answer = response["answer"]
+    en_answer = response["answer"]
+
+    answer = translate_response(target_lang=req.language, text=en_answer)
 
     return JSONResponse(content={"answer": answer})
