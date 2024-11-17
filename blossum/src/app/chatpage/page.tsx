@@ -10,6 +10,7 @@ const ChatPage = () => {
   const [message, setMessage] = useState('');
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [activeTab, setActiveTab] = useState('Home')
 
   useEffect(() => {
     console.log('ChatPage component rendered'); // Log when the component renders
@@ -62,10 +63,44 @@ const ChatPage = () => {
         }
       }
 
-      // Add automatic response after a delay
-      setTimeout(() => {
-        setMessages((prevMessages) => [...prevMessages, { text: 'Sorry, not connected to chatbot', sender: 'bot' }]);
-      }, 1000); // 1 second delay
+      // Upload file if selected
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+
+        try {
+          const response = await fetch('http://localhost:8000/upload/', {
+            method: 'POST',
+            body: formData,
+          });
+
+          const data = await response.json();
+          // setMessage(data.message); // Display response message from FastAPI
+          // setMessages((prevMessages) => [...prevMessages, { text: data.message, sender: 'bot' }]);
+        } catch (error) {
+          console.error('Error uploading file:', error);
+          setMessage('Error uploading file');
+          setMessages((prevMessages) => [...prevMessages, { text: 'Error uploading file', sender: 'bot' }]);
+        }
+      }  
+        // Ask question if no file is selected
+        try {
+          const response = await fetch('http://localhost:8000/ask/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ question: inputValue.trim() }),
+          });
+
+          const data = await response.json();
+          setAnswer(data.answer); // Display the assistant's answer
+          setMessages((prevMessages) => [...prevMessages, { text: data.answer, sender: 'bot' }]);
+        } catch (error) {
+          console.error('Error asking question:', error);
+          setMessages((prevMessages) => [...prevMessages, { text: 'Error asking question', sender: 'bot' }]);
+        
+      }
     }
   };
 
@@ -74,6 +109,10 @@ const ChatPage = () => {
       setFile(e.target.files[0]);
     }
   };
+
+  const handleTabClick = (tab: string) =>{
+    setActiveTab(tab);
+  }
 
   return (
 
