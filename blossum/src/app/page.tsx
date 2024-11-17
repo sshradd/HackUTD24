@@ -6,8 +6,8 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to the onboarding page on app load
-    router.push("/sign-in");
+    // Redirect to the splash
+    router.push("/splashpage");
   }, [router]);
 
   return null; // No content for the Home page, as it redirects immediately

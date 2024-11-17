@@ -114,44 +114,11 @@ const ChatPage = () => {
           </Link>
         </nav>
       </div>
-      <div className="flex-grow p-4 overflow-y-scroll" style={{ backgroundColor: '#F9F8F1' }}>
-        {messages.map((message, index) => (
-          <div
-            key={index}
-            className={`p-5 px-12 rounded-full mb-2 max-w-md ${
-              message.sender === 'user' ? 'bg-pistachio border-wenge border-2 text-xl text-white self-end text-left ml-auto mt-14 mr-32 rounded-2xl' : 
-              'bg-eggshell border-wenge border-2 text-xl text-wenge self-start text-left mr-auto mt-5 ml-36 '
-            }`}
-          >
-            {message.text}
-          </div>
-        ))}
-      </div>
-      <div className="flex text-2xl items-center justify-center border-2 border-wenge rounded-lg drop-shadow-lg w-5/6 p-4 fixed bottom-20 left-1/2 transform -translate-x-1/2 bg-white">
-        <input
-          type="file"
-          className="py-2 px-2 text-wenge rounded-l-lg"
-          onChange={handleFileChange}
-        />
-        <input
-          type="text"
-          placeholder="Chat with Blossom"
-          className="py-2 px-2 flex-grow text-wenge"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button
-          className="bg-pistachio text-white py-2 px-4 rounded-r-lg"
-          onClick={handleSend}
-        >
-          Send
-        </button>
-      </div>
-      <div className="flex justify-center mt-4">
+      <div className="flex self-start mt-4 ml-40">
         <select
           value={language}
           onChange={(e) => setLanguage(e.target.value)}
-          className="border-2 border-gray-300 rounded-lg p-2"
+          className="border-2 border-wenge rounded-lg p-2 bg-wenge text-eggshell hover:bg-lightpink hover:text-wenge text-xl"
         >
           <option value="en">English</option>
           <option value="es">Spanish</option>
@@ -161,7 +128,43 @@ const ChatPage = () => {
           <option value="hi">Hindi</option>
           {/* Add more languages as needed */}
         </select>
+      </div >
+        <div className='justify-center mt-14 h-4/6  overflow-y-scroll shadow-md'>
+          <div className="flex-grow p-4 overflow-y-auto" style={{ backgroundColor: '#F9F8F1' }}>
+            {messages.map((message, index) => (
+              <div
+                key={index}
+                className={`p-5 rounded-xl mb-2 max-w-md ${
+                  message.sender === 'user' ? 'bg-pistachio border-wenge border-2 text-xl text-white self-end text-left ml-auto mt-14 mr-40 shadow-xl' :
+                  'bg-eggshell border-wenge px-7 border-2 text-xl text-wenge self-start text-left mr-auto mt-5 ml-40 shadow-xl'
+                }`}
+              >
+                {message.text}
+              </div>
+            ))}
+          </div>
+        </div>
+      <div className="flex text-2xl items-center justify-center border-2 border-wenge rounded-lg drop-shadow-lg w-5/6 p-4 fixed bottom-10 left-1/2 transform -translate-x-1/2 bg-white">
+        <input
+          type="file"
+          className="py-2 px-2 text-wenge rounded-l-lg"
+          onChange={handleFileChange}
+        />
+        <input
+          type="text"
+          placeholder="Chat with Blossom"
+          className="py-2 px-2 flex-grow text-wenge border-wenge border rounded-2xl mr-8"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+        <button
+          className="bg-pistachio text-white py-2 px-4 rounded-lg"
+          onClick={handleSend}
+        >
+          Send
+        </button>
       </div>
+      
     </div>
   );
 };
