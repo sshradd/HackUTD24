@@ -6,6 +6,7 @@ import Link from 'next/link';
 const ChatPage = () => {
   const [inputValue, setInputValue] = useState('');
   const [messages, setMessages] = useState<string[]>([]);
+  const [activeTab, setActiveTab] = useState('Home');
 
   useEffect(() => {
     console.log('ChatPage component rendered'); // Log when the component renders
@@ -25,10 +26,52 @@ const ChatPage = () => {
       }, 1000); // 1 second delay
     }
   };
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+  };
 
   return (
+
+    <div>
+      {/* Top Navigation */}
+      <nav className="flex space-x-6 justify-end p-4">
+        {/* Home Tab */}
+        <Link href="/dashboard">
+          <div
+            className={`cursor-pointer ${activeTab === 'Home' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('Home')}
+          >
+            Home
+          </div>
+        </Link>
+
+        {/* BlossomBot Tab */}
+        <Link href="/chatpage">
+          <div
+            className={`cursor-pointer ${activeTab === 'BlossomBot' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('BlossomBot')}
+          >
+            BlossomBot
+          </div>
+        </Link>
+
+        {/* Profile Tab */}
+        <Link href="/profile">
+          <div
+            className={`cursor-pointer ${activeTab === 'Profile' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('Profile')}
+          >
+            Profile
+          </div>
+        </Link>
+      </nav>
+
     <div className="flex flex-col h-screen text-wenge">
-      <div className="flex-grow bg-gray-100 p-4 overflow-y-auto">
+      <div className="flex-grow p-4 overflow-y-auto"
+        style={{backgroundColor: '#F9F8F1'}}>
         {messages.map((message, index) => (
           <div
             key={index}
@@ -53,12 +96,13 @@ const ChatPage = () => {
           onChange={(e) => setInputValue(e.target.value)}
         />
         <button
-          className="bg-pistachio text-white py-2 px-2 rounded-r-lg justify-end"
+          className="bg-pistachio text-white py-2 px-6 rounded-lg justify-end"
           onClick={handleSend}
         >
           Send
         </button>
       </div>
+    </div>
     </div>
   );
 };

@@ -26,7 +26,7 @@ const BankingStory = () => {
 
             </div>
             <p className="text-2xl text-wenge">If No, what is the reason?</p>
-            <input type="dropdown" placeholder="USD Value" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg" />
+            <input type="dropdown" placeholder="Choose answer" className="border-2 border-wenge p-2 rounded-lg placeholder:text-wenge text-wenge" />
             
             <div className='flex justify-center'>
                 <Link href="/dashboard">
