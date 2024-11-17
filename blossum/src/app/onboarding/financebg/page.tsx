@@ -69,9 +69,6 @@ const FinanceBG = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
   );
 };
 
