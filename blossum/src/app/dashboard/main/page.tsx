@@ -10,6 +10,7 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('Home');
   const [expenses, setExpenses] = useState<DocumentData[]>([]); // Explicitly typing expenses as DocumentData[]
   const [loading, setLoading] = useState(true); // State to handle loading status
+  const [savingsRecommendations, setSavingsRecommendations] = useState<string[]>([]); // Store recommendations as an array
 
   // Handle tab changes
   const handleTabClick = (tab: string) => {
@@ -28,7 +29,6 @@ const Dashboard = () => {
       );
 
       const querySnapshot = await getDocs(expenseQuery);
-
       const fetchedExpenses = querySnapshot.docs.map((doc) => doc.data());
 
       // Log the fetched expenses to the console for debugging
@@ -37,9 +37,46 @@ const Dashboard = () => {
       // Update state with fetched expenses
       setExpenses(fetchedExpenses);
       setLoading(false);
+
+      // Calculate savings recommendation once expenses are fetched
+      calculateSavings(fetchedExpenses);
     } catch (error) {
       console.error('Error fetching expenses:', error);
       setLoading(false);
+    }
+  };
+
+  // Calculate savings needed based on monthly income and goal
+  const calculateSavings = (expenses: DocumentData[]) => {
+    const monthlyIncome = 500;
+    const savingsGoal = 5000; // Target savings goal
+    const monthsLeft = 12; // Months left in the year
+    const monthlySavingTarget = savingsGoal / monthsLeft;
+
+    // Calculate the total current expenses and group them by category
+    const categoryExpenses: { [key: string]: number } = {};
+    expenses.forEach((expense) => {
+      const category = expense.category || 'Uncategorized';
+      const amountSpent = parseFloat(expense.amountSpent);
+      categoryExpenses[category] = (categoryExpenses[category] || 0) + amountSpent;
+    });
+
+    const totalExpenses = Object.values(categoryExpenses).reduce((acc, curr) => acc + curr, 0);
+    const currentSavingPotential = monthlyIncome - totalExpenses;
+    const additionalSavingsRequired = monthlySavingTarget - currentSavingPotential;
+
+    let recommendations: string[] = [];
+
+    if (additionalSavingsRequired > 0) {
+      // Recommend cutting expenses from each category
+      for (const [category, amount] of Object.entries(categoryExpenses)) {
+        const cutAmount = Math.min(amount, additionalSavingsRequired);
+        recommendations.push(`Cut ${cutAmount.toFixed(2)} from ${category}.`);
+        if (cutAmount === additionalSavingsRequired) break; // Stop once we meet the savings goal
+      }
+      setSavingsRecommendations(recommendations);
+    } else {
+      setSavingsRecommendations(['You are already on track to meet your savings goal!']);
     }
   };
 
@@ -62,13 +99,13 @@ const Dashboard = () => {
     console.log('Expenses state:', expenses); // Debugging: Check the state of expenses
   }, [expenses]);
 
-  // Calculate height for the Recently Logged Expenses box based on the number of expenses
-  const calculateBoxHeight = () => {
+  // Calculate height for the boxes based on the number of items (expenses or recommendations)
+  const calculateBoxHeight = (items: string[]) => {
     const baseHeight = 250; // Base height for the box
-    const itemHeight = 50; // Height for each expense item
+    const itemHeight = 50; // Height for each item (expense or recommendation)
     const maxHeight = 600; // Maximum height for the box
     
-    const newHeight = Math.min(baseHeight + (expenses.length * itemHeight), maxHeight);
+    const newHeight = Math.min(baseHeight + (items.length * itemHeight), maxHeight);
     return `${newHeight}px`;
   };
 
@@ -104,7 +141,7 @@ const Dashboard = () => {
 
         {/* Right Column */}
         <div className="flex flex-col items-start space-y-6 w-1/2" style={{ color: '#F9F8F1' }}>
-          <div className="rounded-2xl border-2 p-6" style={{ backgroundColor: '#FFFFFF', borderColor: '#655453', width: '100%', height: '200px' }}>
+          <div className="rounded-2xl border-2 p-6" style={{ backgroundColor: '#FFFFFF', borderColor: '#655453', width: '100%', height: calculateBoxHeight(savingsRecommendations) }}>
             {/* Recommendations */}
             <div className="flex justify-between items-center">
               <div className="flex justify-center">
@@ -113,13 +150,16 @@ const Dashboard = () => {
               <span className="text-xl font-bold cursor-pointer" style={{ color: '#655453' }}>→</span>
             </div>
             <div className="flex flex-col space-y-4 mt-4">
-              <div className="rounded-lg h-10 w-full shadow-lg" style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)' }}></div>
-              <div className="rounded-lg h-10 w-full shadow-lg" style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)' }}></div>
+              {savingsRecommendations.map((recommendation, index) => (
+                <div key={index} className="rounded-lg h-12 w-full shadow-lg p-4" style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)' }}>
+                  <span className="text-black">{recommendation}</span>
+                </div>
+              ))}
             </div>
           </div>
 
           {/* Recently Logged Expenses */}
-          <div className="rounded-2xl border-2 p-6" style={{ backgroundColor: '#FFFFFF', borderColor: '#655453', width: '100%', height: calculateBoxHeight() }}>
+          <div className="rounded-2xl border-2 p-6 ml-6" style={{ backgroundColor: '#FFFFFF', borderColor: '#655453', width: '100%', height: calculateBoxHeight(expenses) }}>
             <div className="flex justify-between items-center">
               <div className="flex justify-center">
                 <h3 className="text-xl font-semibold" style={{ color: '#655453' }}>Recently Logged Expenses</h3>
@@ -128,15 +168,15 @@ const Dashboard = () => {
             </div>
             <div className="flex flex-col space-y-4 mt-4">
               {loading ? (
-                <div>Loading expenses...</div>
-              ) : expenses.length > 0 ? (
+                <div>Loading...</div>
+              ) : (
                 expenses.map((expense, index) => (
-                  <div key={index} className="rounded-lg h-12 w-full shadow-lg flex items-center px-4" style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)' }}>
-                    <span className="text-black">{`${index + 1}. ${expense.category || 'Uncategorized'}: $${parseFloat(expense.amountSpent).toFixed(2)}`}</span>
+                  <div key={index} className="rounded-lg h-12 w-full shadow-lg" style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)' }}>
+                    <span className="text-black">
+                      <strong>{expense.category}:</strong> ${expense.amountSpent}
+                    </span>
                   </div>
                 ))
-              ) : (
-                <div>No expenses logged yet.</div>
               )}
             </div>
           </div>
