@@ -1,18 +1,14 @@
+// app/firebase/config.js
 
-
-
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { getFirestore } from 'firebase/firestore';  // Import Firestore
-import 'firebase/firestore';  // Optional, depending on Firebase version you're using
+import { getFirestore } from 'firebase/firestore';
 
-// Initialize Firebase app if not already initialized
-const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+// Firebase configuration object (replace with your own Firebase config)
 
-// Initialize Auth
-const auth = getAuth(app);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
-// Initialize Firestore
-const firestore = getFirestore(app);  // Initialize Firestore instance
-
-export { app, auth, firestore };  // Export firestore
+// Get Auth and Firestore instances
+export const auth = getAuth(app);
+export const db = getFirestore(app);
