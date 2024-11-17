@@ -1,18 +1,26 @@
-import type { Config } from "tailwindcss";
-
-export default {
+import type { Config } from 'tailwindcss'
+ 
+const config: Config = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './app/**/*.{js,ts,jsx,tsx,mdx}', // Note the addition of the `app` directory.
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+ 
+    // Or if using `src` directory:
+    './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        bondiblue: "#2A92B1", // Custom colors based on the image
+        eggshell: "#F0EDDB",
+        pistachio: "#8CC487",
+        wenge: "#655453",
       },
+
+
     },
   },
   plugins: [],
-} satisfies Config;
+}
+export default config

@@ -6,7 +6,6 @@ import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';  // Import Firestore
 import 'firebase/firestore';  // Optional, depending on Firebase version you're using
 
-
 // Initialize Firebase app if not already initialized
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 
