@@ -15,34 +15,42 @@ const Dashboard = () => {
       <div className="flex justify-end items-center w-full p-4 pr-12"
         style={{ backgroundColor: '#F9F8F1' }}
       > 
-        <nav className="flex space-x-6">
-          {/* Home Tab */}
-          <div
-            className={`cursor-pointer ${activeTab === 'Home' ? 'font-bold underline' : ''}`}
-            style={{ color: '#655453' }}
-            onClick={() => handleTabClick('Home')}
-          >
-            Home
-          </div>
 
-          {/* BlossomBot Tab */}
-          <div
-            className={`cursor-pointer ${activeTab === 'BlossomBot' ? 'font-bold underline' : ''}`}
-            style={{ color: '#655453' }}
-            onClick={() => handleTabClick('BlossomBot')}
-          >
-            BlossomBot
-          </div>
+<nav className="flex space-x-6">
+  {/* Home Tab */}
+  <Link href="/dashboard">
+    <div
+      className={`cursor-pointer ${activeTab === 'Home' ? 'font-bold underline' : ''}`}
+      style={{ color: '#655453' }}
+      onClick={() => handleTabClick('Home')}
+    >
+      Home
+    </div>
+  </Link>
 
-          {/* Profile Tab */}
-          <div
-            className={`cursor-pointer ${activeTab === 'Profile' ? 'font-bold underline' : ''}`}
-            style={{ color: '#655453' }}
-            onClick={() => handleTabClick('Profile')}
-          >
-            Profile
-          </div>
-        </nav>
+  {/* BlossomBot Tab */}
+  <Link href="/blossombot">
+    <div
+      className={`cursor-pointer ${activeTab === 'BlossomBot' ? 'font-bold underline' : ''}`}
+      style={{ color: '#655453' }}
+      onClick={() => handleTabClick('BlossomBot')}
+    >
+      BlossomBot
+    </div>
+  </Link>
+
+  {/* Profile Tab */}
+  <Link href="/profile">
+    <div
+      className={`cursor-pointer ${activeTab === 'Profile' ? 'font-bold underline' : ''}`}
+      style={{ color: '#655453' }}
+      onClick={() => handleTabClick('Profile')}
+    >
+      Profile
+    </div>
+  </Link>
+</nav>
+
       </div>
 
       <div className="flex justify-between h-screen p-6 space-x-6">
@@ -54,14 +62,15 @@ const Dashboard = () => {
             {/* Content of first box */}
           </div>
 
+
             {/* Content of second box */}
             <Link href="/dashboard/logexpense">
               <button className="rounded-2xl border-2 p-2 text-3xl font-semibold"
-              style={{ backgroundColor: '#655453', color: '#F9F8F1', borderColor: '#655453', width: '100%', height: '100px'}}>
+              style={{ backgroundColor: '#655453', color: '#F9F8F1', borderColor: '#655453', width: '700px', height: '100px'}}>
               Log Expense
               </button>
             </Link>
-        </div>
+          </div>
 
         {/* Right Column */}
         <div className="flex flex-col items-start space-y-6 w-1/2"

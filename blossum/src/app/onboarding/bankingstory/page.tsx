@@ -26,7 +26,7 @@ const BankingStory = () => {
 
             </div>
             <p className="text-2xl text-wenge">If No, what is the reason?</p>
-            <input type="dropdown" placeholder="USD Value" className="border-2 border-wenge p-2 rounded-lg placeholder:text-wenge text-wenge" />
+            <input type="dropdown" placeholder="Choose answer" className="border-2 border-wenge p-2 rounded-lg placeholder:text-wenge text-wenge" />
             
             <Link href="/dashboard">
                 <button className="bg-pistachio text-white p-2 rounded-lg">Done</button>

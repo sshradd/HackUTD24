@@ -1,9 +1,20 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { FiArrowLeft } from 'react-icons/fi';
 const FinanceBG = () => {
   return (
-    <div>
+<div>
+      <div className="bg-white h-screen flex relative items-center justify-between gap-2 px-10 overflow-visible">
+        {/* Back Button */}
+        <div className="absolute top-8 right-66 z-30">
+          <Link href="/dashboard">
+            <button className="text-3xl text-wenge">
+              <FiArrowLeft />
+            </button>
+          </Link>
+        </div>
+
       <div className="bg-white h-screen flex relative items-center justify-between gap-2 px-0">
         <div className="flex flex-col">
           <Image src="/tree.png" alt="Welcome" width={800} height={400} />
@@ -50,6 +61,7 @@ const FinanceBG = () => {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );
