@@ -29,7 +29,7 @@ const Dashboard = () => {
   </Link>
 
   {/* BlossomBot Tab */}
-  <Link href="/blossombot">
+  <Link href="/chatpage">
     <div
       className={`cursor-pointer ${activeTab === 'BlossomBot' ? 'font-bold underline' : ''}`}
       style={{ color: '#655453' }}
@@ -97,39 +97,77 @@ const Dashboard = () => {
             </div>
           </div>
 
-        {/* Recently Logged */}
-        <div className="rounded-2xl border-2 p-6"
-          style={{ backgroundColor: '#FFFFFF', color: '#F9F8F1', borderColor: '#655453', width: '100%', height: '500px' }}>
-            <div className="flex justify-center">
-            <h3 className="text-xl font-semibold"
-              style={{ color: '#655453'}}
-            >Recently Logged</h3>
-            </div>
-          <div className="flex flex-col space-y-5 mt-7">
-            <div className="rounded-lg h-12 w-full shadow-lg"
-            style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
-            ></div>
-            <div className="rounded-lg h-12 w-full shadow-lg"
-            style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
-            ></div>
-            <div className="rounded-lg h-12 w-full shadow-lg"
-            style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
-            ></div>
-            <div className="rounded-lg h-12 w-full shadow-lg"
-            style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
-            ></div>
-            <div className="rounded-lg h-12 w-full shadow-lg"
-            style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
-            ></div>
-          </div>
-          {/* See All Button optional */}
-            <div className="flex justify-center">
-              <button className="mt-4 w-1/4 py-3 rounded-3xl font-semibold"
-              style={{ backgroundColor: '#A2C19A', color: '#655453'}}>
-              See All
-              </button>
-            </div>
-        </div>
+          <div className="rounded-2xl border-2 p-6"
+  style={{
+    backgroundColor: '#FFFFFF',
+    color: '#F9F8F1',
+    borderColor: '#655453',
+    width: '100%',
+    height: '500px',
+  }}
+>
+  <div className="flex justify-center">
+    <h3 className="text-xl font-semibold" style={{ color: '#655453' }}>
+      Recently Logged
+    </h3>
+  </div>
+  <div className="flex flex-col space-y-5 mt-7">
+    <div
+      className="rounded-lg h-12 w-full shadow-lg flex items-center px-4"
+      style={{
+        backgroundColor: '#F9F8F1',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <span className="text-black">Groceries: $50</span>
+    </div>
+    <div
+      className="rounded-lg h-12 w-full shadow-lg flex items-center px-4"
+      style={{
+        backgroundColor: '#F9F8F1',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <span className="text-black">Transportation: $20</span>
+    </div>
+    <div
+      className="rounded-lg h-12 w-full shadow-lg flex items-center px-4"
+      style={{
+        backgroundColor: '#F9F8F1',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <span className="text-black">Dining: $35</span>
+    </div>
+    <div
+      className="rounded-lg h-12 w-full shadow-lg flex items-center px-4"
+      style={{
+        backgroundColor: '#F9F8F1',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <span className="text-black">Entertainment: $40</span>
+    </div>
+    <div
+      className="rounded-lg h-12 w-full shadow-lg flex items-center px-4"
+      style={{
+        backgroundColor: '#F9F8F1',
+        boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)',
+      }}
+    >
+      <span className="text-black">Healthcare: $60</span>
+    </div>
+  </div>
+  <div className="flex justify-center">
+    <button
+      className="mt-4 w-1/4 py-3 rounded-3xl font-semibold"
+      style={{ backgroundColor: '#A2C19A', color: '#655453' }}
+    >
+      See All
+    </button>
+  </div>
+</div>
+
       </div>
 
       </div>

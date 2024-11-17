@@ -62,11 +62,6 @@ const FinanceBG = () => {
           </div>
         </div>
       </div>
-              <div className="flex justify-center">
-                <Link href="/onboarding/expenses">
-                  <button className="bg-pistachio text-white py-3 px-72 rounded-lg">Next</button>
-                </Link>
-              </div>
             </div>
           </div>
   );
