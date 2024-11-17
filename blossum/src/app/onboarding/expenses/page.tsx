@@ -13,7 +13,9 @@ const Expenses = () => {
           <div className="flex flex-col space-y-8">
             
             <p className="text-2xl text-wenge">Monthly Spending Limit</p>
-            <input type="text" placeholder="USD Value" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg" />
+            <input type="text" placeholder="USD Value" className="border-2 border-wenge p-2 rounded-lg placeholder:text-wenge text-wenge" />
+            
+            {/* Move to the log expenses pop up  */}
             <p className="text-2xl text-wenge">What do you spend your money on?</p>
             <div className="flex items-center space-x-4">
               <div className='flex flex-col'>

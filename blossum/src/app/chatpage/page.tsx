@@ -76,8 +76,47 @@ const ChatPage = () => {
   };
 
   return (
+
+    <div>
+      {/* Top Navigation */}
+      <nav className="flex space-x-6 justify-end p-4">
+        {/* Home Tab */}
+        <Link href="/dashboard">
+          <div
+            className={`cursor-pointer ${activeTab === 'Home' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('Home')}
+          >
+            Home
+          </div>
+        </Link>
+
+        {/* BlossomBot Tab */}
+        <Link href="/chatpage">
+          <div
+            className={`cursor-pointer ${activeTab === 'BlossomBot' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('BlossomBot')}
+          >
+            BlossomBot
+          </div>
+        </Link>
+
+        {/* Profile Tab */}
+        <Link href="/profile">
+          <div
+            className={`cursor-pointer ${activeTab === 'Profile' ? 'font-bold underline' : ''}`}
+            style={{ color: '#655453' }}
+            onClick={() => handleTabClick('Profile')}
+          >
+            Profile
+          </div>
+        </Link>
+      </nav>
+
     <div className="flex flex-col h-screen text-wenge">
-      <div className="flex-grow bg-gray-100 p-4 overflow-y-auto">
+      <div className="flex-grow p-4 overflow-y-auto"
+        style={{backgroundColor: '#F9F8F1'}}>
         {messages.map((message, index) => (
           <div
             key={index}
@@ -109,6 +148,7 @@ const ChatPage = () => {
           Send
         </button>
       </div>
+    </div>
     </div>
   );
 };
