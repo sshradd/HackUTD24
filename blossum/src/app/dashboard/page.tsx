@@ -55,10 +55,12 @@ const Dashboard = () => {
           </div>
 
             {/* Content of second box */}
-          <button className="rounded-2xl border-2 p-2 text-3xl font-semibold"
-          style={{ backgroundColor: '#655453', color: '#F9F8F1', borderColor: '#655453', width: '100%', height: '100px'}}>
-          Log Expense
-          </button>
+            <Link href="/dashboard/logexpense">
+              <button className="rounded-2xl border-2 p-2 text-3xl font-semibold"
+              style={{ backgroundColor: '#655453', color: '#F9F8F1', borderColor: '#655453', width: '100%', height: '100px'}}>
+              Log Expense
+              </button>
+            </Link>
         </div>
 
         {/* Right Column */}
