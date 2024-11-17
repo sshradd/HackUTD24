@@ -11,7 +11,7 @@ const SplashPage = () => {
     setMounted(true); 
 
     const timer = setTimeout(() => {
-      router.push('/dashboard'); 
+      router.push('/sign-in'); 
     }, 2000);
 
     return () => clearTimeout(timer); 
