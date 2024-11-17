@@ -10,6 +10,7 @@ const ChatPage = () => {
   const [message, setMessage] = useState('');
   const [question, setQuestion] = useState('');
   const [answer, setAnswer] = useState('');
+  const [activeTab, setActiveTab] = useState('Home')
 
   useEffect(() => {
     console.log('ChatPage component rendered'); // Log when the component renders
@@ -69,6 +70,10 @@ const ChatPage = () => {
       setFile(e.target.files[0]);
     }
   };
+
+  const handleTabClick = (tab: string) =>{
+    setActiveTab(tab);
+  }
 
   return (
 
