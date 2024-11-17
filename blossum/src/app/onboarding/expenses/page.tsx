@@ -8,8 +8,8 @@ const Expenses = () => {
         <div className="flex flex-col">
           <Image src="/tree.png" alt="Welcome" width={800} height={400} />
         </div>
-        <div className="flex flex-col ml-52">
-          <h1 className="text-5xl font-bold text-wenge">Your Expenses</h1>
+        <div className="flex flex-col  space-y-8 ">
+          <h1 className="text-5xl font-bold text-wenge mr-52"> Your Expenses</h1>
           <div className="flex flex-col space-y-8">
             
             <p className="text-2xl text-wenge">Monthly Spending Limit</p>

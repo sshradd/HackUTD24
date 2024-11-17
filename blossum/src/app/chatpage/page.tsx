@@ -114,13 +114,13 @@ const ChatPage = () => {
           </Link>
         </nav>
       </div>
-      <div className="flex-grow p-4 overflow-y-auto" style={{ backgroundColor: '#F9F8F1' }}>
+      <div className="flex-grow p-4 overflow-y-scroll" style={{ backgroundColor: '#F9F8F1' }}>
         {messages.map((message, index) => (
           <div
             key={index}
-            className={`p-5 rounded-full mb-2 max-w-md ${
-              message.sender === 'user' ? 'bg-pistachio border-wenge border-2 text-xl text-white self-end text-left ml-auto mt-14 mr-32 rounded-full' : 
-              'bg-eggshell border-wenge border-2 text-xl text-wenge self-start text-left mr-auto mt-5 ml-36'
+            className={`p-5 px-12 rounded-full mb-2 max-w-md ${
+              message.sender === 'user' ? 'bg-pistachio border-wenge border-2 text-xl text-white self-end text-left ml-auto mt-14 mr-32 rounded-2xl' : 
+              'bg-eggshell border-wenge border-2 text-xl text-wenge self-start text-left mr-auto mt-5 ml-36 '
             }`}
           >
             {message.text}

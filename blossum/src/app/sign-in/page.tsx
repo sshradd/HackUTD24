@@ -19,7 +19,7 @@ const SignIn = () => {
               <input type="text" placeholder="Email" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg " />
               <input type="password" placeholder="Password" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg" />
               <div className='flex justify-center items-center flex-col'>
-                <Link href="/onboarding/welcome">
+                <Link href="/dashboard">
                   <button className="bg-pistachio text-white py-3 px-72 rounded-lg mb-4">Sign in</button>
                 </Link>
                 <Link href="/sign-up">

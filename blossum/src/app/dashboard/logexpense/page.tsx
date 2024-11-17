@@ -45,14 +45,14 @@ const LogExpense = () => {
   return (
     <div className="h-screen bg-white">
       {/* Page Layout */}
-      <div className="flex items-center justify-between gap-2 px-0">
+      <div className="flex items-center gap-2 px-0">
         <div className="flex flex-col">
-          <Image src="/tree.png" alt="Welcome" width={800} height={400} />
+          <Image src="/tree.png" alt="Welcome" width={900} height={400} />
         </div>
-        <div className="flex flex-col p-6">
+        <div className="flex flex-col p-4 ml-44"> {/* Reduced padding and margin */}
           {/* Expense Form */}
-          <h1 className="text-5xl font-bold text-wenge mb-6">Your Expenses</h1>
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
+          <h1 className="text-5xl font-bold text-wenge mb-4">Your Expenses</h1> {/* Reduced margin */}
+          <form onSubmit={handleSubmit} className="flex flex-col space-y-3 gap-y-5">
             <p className="text-2xl text-wenge">Amount Spent</p>
             <input
               type="number"
@@ -63,7 +63,7 @@ const LogExpense = () => {
               required
             />
             <p className="text-2xl text-wenge">Category</p>
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 gap-4 text-xl">
               {[
                 'Housing',
                 'Transportation',
@@ -93,24 +93,23 @@ const LogExpense = () => {
               Add Expense
             </button>
           </form>
+          {/* Pie Chart */}
+          <div className="mt-6 p-4"> {/* Reduced margin */}
+            <h2 className="text-4xl font-bold text-wenge mb-4">Expense Distribution</h2>
+            {expenses.length > 0 ? (
+              <Pie data={chartData} />
+            ) : (
+              <p className="text-xl text-wenge">No expenses logged yet.</p>
+            )}
+          </div>
+
+          {/* Navigation Link */}
+          <div className="p-4 "> {/* Reduced padding */}
+            <Link href="/dashboard">
+              <button className="bg-pistachio text-white p-3 rounded-lg">Back to Dashboard</button>
+            </Link>
+          </div>
         </div>
-      </div>
-
-      {/* Pie Chart */}
-      <div className="mt-10 p-4">
-        <h2 className="text-4xl font-bold text-wenge mb-4">Expense Distribution</h2>
-        {expenses.length > 0 ? (
-          <Pie data={chartData} />
-        ) : (
-          <p className="text-xl text-wenge">No expenses logged yet.</p>
-        )}
-      </div>
-
-      {/* Navigation Link */}
-      <div className="p-6">
-        <Link href="/dashboard">
-          <button className="bg-pistachio text-white p-3 rounded-lg">Back to Dashboard</button>
-        </Link>
       </div>
     </div>
   );
