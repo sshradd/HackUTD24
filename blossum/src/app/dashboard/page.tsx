@@ -113,6 +113,7 @@ const Dashboard = () => {
             style={{ backgroundColor: '#F9F8F1', boxShadow: '4px 4px 10px rgba(0, 0, 0, 0.1)'}}
             ></div>
           </div>
+          {/* See All Button optional */}
             <div className="flex justify-center">
               <button className="mt-4 w-1/4 py-3 rounded-3xl font-semibold"
               style={{ backgroundColor: '#A2C19A', color: '#655453'}}>
