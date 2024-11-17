@@ -21,6 +21,7 @@ if not OPENAI_API_KEY:
 
 PERSIST_DIRECTORY = './vector_db'
 
+
 def process_uploaded_file(file_path: str):
     # Load the uploaded PDF file
     loader = PyPDFLoader(file_path)
