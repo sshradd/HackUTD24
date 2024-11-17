@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-const Welcome = () => {
+const SignUp = () => {
   return (
     <div >
       <div className="bg-white h-screen flex relative items-center">
@@ -13,13 +13,13 @@ const Welcome = () => {
           <div className="flex flex-col ml-52 space-y-8 ">
             <div className='flex items-center flex-col'>
               <h1 className="text-6xl font-bold text-wenge mb-8">Welcome to Blossom</h1>
-              <p className="text-3xl text-wenge">Let's get started</p>
+              <p className="text-3xl text-wenge">Let's get started. Create your account.</p>
             </div>
             <div className="flex flex-col justify-center space-y-8 ">
               <input type="text" placeholder="Email" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg " />
-              <input type="text" placeholder="Password" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg" />
+              <input type="password" placeholder="Password" className="py-4 border-2 text-wenge drop-shadow-lg border-gray-300 p-2 rounded-lg" />
               <div className='flex justify-center'>
-                <Link href="/onboarding/financebg">
+                <Link href="/onboarding/welcome">
                   <button className="bg-pistachio text-white py-3 px-72 rounded-lg ">Sign up</button>
                 </Link>
               </div>
@@ -30,4 +30,4 @@ const Welcome = () => {
   );
 };
 
-export default Welcome;
+export default SignUp;

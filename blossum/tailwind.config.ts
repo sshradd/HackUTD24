@@ -16,6 +16,7 @@ const config: Config = {
         eggshell: "#F0EDDB",
         pistachio: "#8CC487",
         wenge: "#655453",
+        lightpink: "#FCE4E3",
       },
 
 
